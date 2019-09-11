@@ -5,9 +5,10 @@ module.exports = {
   devtool: "cheap-module-eval-source-map",
   entry: "./src/index.js",
   output: {
-    path: "",
+    path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    publicPath: path.resolve(__dirname, "dist")
+    chunkFilename: "[id].js",
+    publicPath: ""
   },
   resolve: {
     extensions: [".js", ".jsx"]
@@ -28,19 +29,17 @@ module.exports = {
             loader: "css-loader",
             options: {
               importLoaders: 1,
-              modules: true, // css-modules loading
-              localIdentName: "[name]__[local]__[hash:base64:5]"
+              modules: {
+                // css-modules loading
+                localIdentName: "[name]__[local]__[hash:base64:5]"
+              }
             }
           }, // order is impt order goes from right to left or bottom to top so first css-loader willbe applied followed by style-loader
           {
             loader: "postcss-loader",
             options: {
               ident: "postcss",
-              plugins: () => [
-                autoprefixer({
-                  browsers: ["> 1%", "last 2 versions"]
-                })
-              ]
+              plugins: () => [autoprefixer()]
             }
           }
         ]
