@@ -20,8 +20,17 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: "babel-loader",
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        use: [
+          { loader: "style-loader" },
+          {
+            loader: "css-loader",
+            options: {
+              modules: true, // css-modules loading
+              localIdentName: "[name]__[local]__[hash:base64:5]"
+            }
+          }
+        ] // order is impt order goes from right to left or bottom to top so first css-loader willbe applied followed by style-loader
       }
     ]
   }
