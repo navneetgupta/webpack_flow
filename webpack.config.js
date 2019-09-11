@@ -44,6 +44,10 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        loader: "url-loader?limit=8000&name=images/[name].[ext]" // limit in bytes
       }
     ]
   }
