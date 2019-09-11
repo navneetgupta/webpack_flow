@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Route } from "react-router-dom";
+import { Link, Route, Switch, Redirect } from "react-router-dom";
 
 import Users from "./containers/Users";
 import AsyncComponent from "./hoc/AsyncComponent";
@@ -13,14 +13,18 @@ class App extends Component {
     return (
       <div>
         <div>
-          <Link to="/">Users</Link>
-          <Link to="/pizza">Pizza</Link>
+          <Link to="/">Users</Link> | <Link to="/pizza">Pizza</Link>
         </div>
         <div>
-          <Route to="/" component={Users} exact />
-          <Route to="/pizza" component={AsyncPizza} />
+          <Switch>
+            <Route path="/pizza" component={AsyncPizza} />
+            <Route path="/" component={Users} exact />
+            <Redirect to="/" />
+          </Switch>
         </div>
       </div>
     );
   }
 }
+
+export default App;
