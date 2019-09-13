@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server",
-    "build": "webpack"
+    "build": "rimraf dist && webpack --config webpack.prod.config.js --progress --profile --color"
   },
   "author": "Navneet Gupta",
   "license": "ISC",
@@ -27,7 +27,9 @@
     "html-webpack-plugin": "^3.2.0",
     "js-beautify": "^1.10.2",
     "postcss-loader": "^3.0.0",
+    "rimraf": "^3.0.0",
     "style-loader": "^1.0.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^2.1.0",
     "webpack": "^4.39.3",
     "webpack-dev-server": "^3.8.0"
